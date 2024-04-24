@@ -27,11 +27,12 @@ $user = $result->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 <body>
-<form method="post">
+<form method="post" action="php/update_process.php">
+    <h1>Hello, <?php echo $user['full_name']; ?></h1>
 <label for="full_name">Full Name:</label><br>
         <input type="text" id="full_name" name="full_name" value="<?php echo $user['full_name']; ?>"><br>
         <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>"><br>
+        <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>" readonly><br>
         <label for="email">Email:</label><br>
         <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br>
         <input type="submit" value="UPDATE">
