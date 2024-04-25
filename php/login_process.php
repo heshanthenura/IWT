@@ -34,7 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["username"] = $user["username"];
             $_SESSION["role"] = $user["role"];
             echo "login successfully";
-            header("Location: ../");
+            if ($_SESSION["role"] === "ADMIN") {
+                header("Location: ../admin/admin.php");
+            } else {
+                header("Location: ../");
+            }
             exit;
         } else {
             echo "Invalid password";
