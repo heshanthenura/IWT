@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["username"] = $user["username"];
             $_SESSION["role"] = $user["role"];
             echo "login successfully";
-            header("Location: /IWT/");
+            header("Location: ../");
             exit;
         } else {
             echo "Invalid password";

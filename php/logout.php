@@ -8,6 +8,6 @@ $_SESSION = array();
 session_destroy();
 
 
-header("Location: /IWT/");
+header("Location: ../");
 exit;
 ?>
