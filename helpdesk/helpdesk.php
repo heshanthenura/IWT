@@ -1,14 +1,15 @@
 <?php
+// Start the session
 session_start();
 
-// Check if the user is not logged in or is not an admin
-if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "ADMIN") {
-    // Redirect to the login page or any other page for unauthorized access
+// Check if the user is not logged in or is not a staff member
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "HELPDESK") {
+    // Redirect to the login page
     header("Location: ../login.php");
     exit;
 }
 
-// Connect to the database
+// Establish a database connection
 $conn = new mysqli("localhost", "root", "root", "users");
 
 // Check connection
@@ -16,24 +17,38 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from available_flights table
-$sql = "SELECT * FROM available_flights";
+// Define SQL query to fetch data
+$sql = "SELECT t.ticket_id, u.full_name, t.arrivale, t.departure, t.destination, t.airline 
+        FROM tickets_info t
+        INNER JOIN users u ON t.username = u.username";
+
+// Execute the query
 $result = $conn->query($sql);
 
-// Close connection
-$conn->close();
+// Check if the query was successful
+if (!$result) {
+    die("Error executing the query: " . $conn->error);
+}
 ?>
+
+<!-- Your HTML code goes here -->
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight List</title>
-    <link rel="stylesheet" href="../css/admin/admin-listFlight.css" type="text/css">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/helpdesk/helpDesk.css" type="text/css">
+
     <script src="myScript.js"></script>
+
 </head>
 <body>
+
+    <!-- Heading code lines -->
     <div id="heading">
         <img src="../images/airline-logo.jpg" width="100px" height="100px" class="logo">
         <h1 class="mainHeadline">Your Dream trip, a few clicks away</h1>
@@ -44,53 +59,65 @@ $conn->close();
     </div>
 
     <div class="navbar">
-        <h2>Admin Panel</h2>
-        <a href="admin.php">Dashboard</a>
-        <a href="admin-addFlight.php">Add Flight</a>
-        <a href="admin-listFlight.php">Manage Airline</a>
-        <a href="admin-airlineList.php">List Airlines</a>
+        <h2>Helpdesk Panel</h2>
+        <a href="helpdesk.php">Dashboard</a>
+        <a href="helpdesk-listFlight.php">Manage Airline</a>
     </div>
 
-    <h2 style="text-align: center;">Flight List</h2>
+    <!-- Starting admin page HTML code and CSS code -->
+    <div class="helpDesk-container">
+        <div class="box" style="background-color: rgb(39, 108, 181);">
+            <h2>Total Passengers</h2>
+            <p>250</p>
+        </div>
+        <div class="box" style="background-color: rgb(37, 228, 97);">
+            <h2>Amount</h2>
+            <p>$25,000</p>
+        </div>
+        <div class="box" style="background-color: rgb(255, 115, 64);">
+            <h2>Flight</h2>
+            <p>Flight XYZ123</p>
+        </div>
+        <div class="box" style="background-color: rgb(77, 157, 255);">
+            <h2>Time</h2>
+            <p id="departure-time"></p>
+        </div>
+    </div>
 
-    <table>
+    <h2 style="text-align: center;">Today's Flights</h2>
+
+    <table style="border: 1px;">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Ticket Id</th>
+                <th>Name</th> 
                 <th>Arrival</th>
                 <th>Departure</th>
-                <th>Source</th>
                 <th>Destination</th>
                 <th>Airline</th>
-                <th>Seats</th>
-                <th>Price</th>
-                <th>Duration</th>
             </tr>
         </thead>
         <tbody>
+            <!-- Loop through the result set and output data -->
             <?php
             if ($result->num_rows > 0) {
-                // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["id"] . "</td>";
-                    echo "<td>" . $row["arrival"] . "</td>";
+                    echo "<td>" . $row["ticket_id"] . "</td>";
+                    echo "<td>" . $row["full_name"] . "</td>";
+                    echo "<td>" . $row["arrivale"] . "</td>";
                     echo "<td>" . $row["departure"] . "</td>";
-                    echo "<td>" . $row["source"] . "</td>";
                     echo "<td>" . $row["destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
-                    echo "<td>" . $row["seats"] . "</td>";
-                    echo "<td>" . $row["price"] . "</td>";
-                    echo "<td>" . $row["duration"] . "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='9'>No flights available</td></tr>";
+                echo "<tr><td colspan='6'>No flights found</td></tr>";
             }
             ?>
         </tbody>
     </table>
-    
+
     <div class="footer">
         <img src="../images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
         <div class="content-wrapper">
@@ -109,5 +136,20 @@ $conn->close();
             <p>Teams of use.Privacy Policy.Cookies</p>
         </div>
     </div>
+
+    <script>
+        // Function to update departure time
+        function updateDepartureTime() {
+            var now = new Date();
+            var departureTimeElement = document.getElementById("departure-time");
+            departureTimeElement.textContent = now.toLocaleString();
+        }
+
+        // Update departure time initially
+        updateDepartureTime();
+
+        // Update departure time every second
+        setInterval(updateDepartureTime, 1000);
+    </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 session_start();
 
 // Check if the user is not logged in or is not an admin
-if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "ADMIN") {
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "STAFF") {
     // Redirect to the login page
     header("Location: ../login.php");
     exit;
@@ -54,7 +54,7 @@ if ($result_airlines->num_rows > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="../css/admin/admin-addFlight.css" type="text/css">
+    <link rel="stylesheet" href="../css/staff/staff-addFlight.css" type="text/css">
 
     <script src="myScript.js"></script>
 
@@ -73,15 +73,15 @@ if ($result_airlines->num_rows > 0) {
 
     <!-- Navbar -->
     <div class="navbar">
-        <h2>Admin Panel</h2>
-        <a href="admin.php">Dashboard</a>
-        <a href="admin-addFlight.php">Add Flight</a>
-        <a href="admin-listFlight.php">Manage Airline</a>
-        <a href="admin-airlineList.php">List Airlines</a>
+        <h2>Staff Panel</h2>
+        <a href="staff.php">Dashboard</a>
+        <a href="staff-addFlight.php">Add Flight</a>
+        <a href="staff-airlineList.php">Manage Airline</a>
+        <a href="staff-listFlight.php">List Flights</a>
     </div>
 
     <div class="form-container">
-        <form method="post" action="../php/admin/add_available_flight.php">
+        <form method="post" action="../php/staff/add_available_flight.php">
     
  <h2 class="form-title">ADD FLIGHT DETAILS</h2>
     <label for="departure">DEPARTURE</label>
