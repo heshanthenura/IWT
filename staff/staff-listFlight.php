@@ -49,8 +49,8 @@ $result = $conn->query($sql);
         <h2>Staff Panel</h2>
         <a href="staff.php">Dashboard</a>
         <a href="staff-addFlight.php">Add Flight</a>
-        <a href="staff-airlineList.php">Manage Airline</a>
-        <a href="staff-listFlight.php">List Flights</a>
+        <a href="staff-listFlight.php">Manage Airline</a>
+        <a href="staff-airlineList.php">List Flights</a>
     </div>
 
     <h2 style="text-align: center;">Flight List</h2>

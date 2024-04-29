@@ -76,8 +76,8 @@ if ($result_airlines->num_rows > 0) {
         <h2>Staff Panel</h2>
         <a href="staff.php">Dashboard</a>
         <a href="staff-addFlight.php">Add Flight</a>
-        <a href="staff-airlineList.php">Manage Airline</a>
-        <a href="staff-listFlight.php">List Flights</a>
+        <a href="staff-listFlight.php">Manage Airline</a>
+        <a href="staff-airlineList.php">List Flights</a>
     </div>
 
     <div class="form-container">
