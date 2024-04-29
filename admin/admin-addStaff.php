@@ -14,13 +14,13 @@
 
     <!-- Heading code lines -->
     <div id="heading">
-        <img src="images\airline-logo.jpg" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.jpg" width="100px" height="100px" class="logo">
 
         <h1 class="mainHeadline">Your Dream trip, a few clicks away</h1>
         
-        <a href="#">
-            <img class="userLogo" width="50px" height="50px" src="images\user-circle.png">
-            <span>Login/SignUp</span>
+        <a href="../php/logout.php">
+            <img class="userLogo" width="50px" height="50px" src="../images/user-circle.png">
+            <span>Logout</span>
         </a>
     </div>
 
@@ -76,23 +76,23 @@
 
 
     <div class="footer">
-        <img src="images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
     
         <div class="content-wrapper">
             <h1 class="bottomHeadline">Follow Us On</h1>
 
             <div class="socialMedia-icon-container">
-                <img src="images/icon-facebook.png" alt="Facebook" width="30px" height="30px">
-                <img src="images/icon-twitter.png" alt="Twitter" width="30px" height="30px">
-                <img src="images/icon-instagram.png" alt="Instagram" width="30px" height="30px">
-                <img src="images/icon-linkedin.png" alt="LinkedIn" width="30px" height="30px">
+                <img src="../images/icon-facebook.png" alt="Facebook" width="30px" height="30px">
+                <img src="../images/icon-twitter.png" alt="Twitter" width="30px" height="30px">
+                <img src="../images/icon-instagram.png" alt="Instagram" width="30px" height="30px">
+                <img src="../images/icon-linkedin.png" alt="LinkedIn" width="30px" height="30px">
             </div>
         </div>
 
         <div class="email-container">
             <p>Subscribe for our latest offers...</p>
             <input type="search" name="a" placeholder="Email address">
-            <img src="images\icon-email.png" alt="email" width="30px" height="30px">
+            <img src="../images/icon-email.png" alt="email" width="30px" height="30px">
             <p>Teams of use.Privacy Policy.Cookies</p>
         </div>
 
