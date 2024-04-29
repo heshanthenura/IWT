@@ -56,7 +56,8 @@ $result = $conn->query($sql);
     <div class="navbar">
         <h2>Admin Panel</h2>
         <a href="admin.php">Dashboard</a>
-        <a href="admin-addFlight.php">Add Flight</a>
+        <!-- <a href="admin-addFlight.php">Add Flight</a> -->
+        <a href="admin-addStaff.php">Add Staff</a>
         <a href="admin-listFlight.php">Manage Airline</a>
         <a href="admin-airlineList.php">List Airlines</a>
     </div>
