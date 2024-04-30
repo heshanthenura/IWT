@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit;
+}
+$conn = new mysqli("localhost", "root", "root", "users");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$sql = "SELECT username, email, full_name FROM users WHERE username = ?";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+}
+$stmt->bind_param("s", $_SESSION["username"]);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,32 +42,34 @@
         
         <a href="#">
             <img class="userLogo" width="50px" height="50px" src="images\user-circle.png">
-            <span>Login/SignUp</span>
+            <?php
+               
+                if (isset($_SESSION["username"])) {
+                    echo '<div id="login-logout"><a href="./php/logout.php">Logout</a></div>';
+                } else {
+                    echo '<div id="login-logout"><a href="login.php">Login</a>/<a href="signup.php">Sign Up</a></div>';
+                }
+                ?>
         </a>
     </div>
 
     <!-- welcome and icons set code lines -->
-    <div>
+    <div class="nav">
         <h2 style="margin-left: 10px;">Welcome</h2>
-        <form class="search" action="#">
-            <input type="search" name="q" placeholder="Search the Packeges">
-            <button type="submit">Search</button>
-        </form>
-
         <div class="icon-container">
-            <a href="#">
+            <a href="./">
                 <img src="images/icons-home.png" alt="Home" width="30px" height="30px">
                 <span>Home</span>
             </a>
-            <a href="#">
+            <a href="./userProfile.php">
                 <img src="images/icons-user.png" alt="User" width="30px" height="30px">
                 <span>User</span>
             </a>
-            <a href="#">
+            <a href="./contactus.php">
                 <img src="images/icons-phone.png" alt="Contact Us" width="30px" height="30px">
                 <span>Contact</span>
             </a>
-            <a href="#">
+            <a href="./aboutus.php">
                 <img src="images/icons-warning.png" alt="About Us" width="30px" height="30px">
                 <span>About</span>
             </a>
@@ -55,20 +79,36 @@
 
 
 
+
     <!-- user details -->
     <h2 class="userHeading">User Details</h2>
-    <div class="user-details-box">
-        <form action="#" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="fullname">Full Name:</label>
-            <input type="text" id="fullname" name="fullname" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <input type="submit" value="Update">
-            <input type="reset" value="Delete">
-        </form>
-    </div><br><br><br>
+    <div class="form-wrapper">
+        <div class="user-details-box">
+        <form method="post" action="./php/update_process.php">
+    <h1>Hello, <?php echo $user['full_name']; ?></h1>
+<label for="full_name">Full Name:</label><br>
+        <input type="text" id="full_name" name="full_name" value="<?php echo $user['full_name']; ?>"><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>" readonly><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br>
+        <input type="submit" value="UPDATE">
+    </form>
+        </div>
+
+        <!-- Password Box -->
+        <div class="user-password-box">
+        <form action="./php/update_password.php" method="post">
+                <label for="old_password">Old Password:</label>
+                <input type="password" id="old_password" name="old_password" required>
+                <label for="new_password">New Password:</label>
+                <input type="password" id="new_password" name="new_password" required>
+                <label for="confNew_password">Re-Enter Password:</label>
+                <input type="password" id="confNew_password" name="confNew_password" required>
+                <input type="submit" value="Change Password">
+            </form>
+        </div>
+    </div>
 
     <!-- horizontal line -->
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">

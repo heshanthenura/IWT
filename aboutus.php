@@ -17,32 +17,35 @@
         
         <a href="#">
             <img class="userLogo" width="50px" height="50px" src="images\user-circle.png">
-            <span>Login/SignUp</span>
+            <?php
+                session_start();
+                if (isset($_SESSION["username"])) {
+                    echo '<div id="login-logout"><a href="./php/logout.php">Logout</a></div>';
+                } else {
+                    echo '<div id="login-logout"><a href="login.php">Login</a>/<a href="signup.php">Sign Up</a></div>';
+                }
+                ?>
         </a>
     </div>
 	
-	<!-- welcome and icons set code lines -->
-    <div>
+	
+    <!-- welcome and icons set code lines -->
+    <div class="nav">
         <h2 style="margin-left: 10px;">Welcome</h2>
-        <form class="search" action="/search">
-            <input type="search" name="q" placeholder="Search the Packeges">
-            <button type="submit">Search</button>
-        </form>
-
         <div class="icon-container">
-            <a href="index.php">
+            <a href="./">
                 <img src="images/icons-home.png" alt="Home" width="30px" height="30px">
                 <span>Home</span>
             </a>
-            <a href="profile.php">
+            <a href="./userProfile.php">
                 <img src="images/icons-user.png" alt="User" width="30px" height="30px">
                 <span>User</span>
             </a>
-            <a href="contactus.php">
+            <a href="./contactus.php">
                 <img src="images/icons-phone.png" alt="Contact Us" width="30px" height="30px">
                 <span>Contact</span>
             </a>
-            <a href="aboutus.php">
+            <a href="./aboutus.php">
                 <img src="images/icons-warning.png" alt="About Us" width="30px" height="30px">
                 <span>About</span>
             </a>
