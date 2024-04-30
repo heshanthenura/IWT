@@ -26,45 +26,54 @@
     <!-- Ticket booking -->
 
     <h1 id="airline">Airline Ticket Booking</h1>
+    
+
+    <!-- table for ticket booking -->
+    <table style="border: 1px;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Arrival</th>
+            <th>Departure</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Airline</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- can add your flight data here -->
+        <tr>
+        <td>testtt testtt tesvt gdfgfd vxcvxcv.</td>
+        <td>.cxvxcvxxzzvcvcxvxvxcvxcvxcvxcvcx sdsfsdf dzfsdfcvcxvxcvcx..</td>
+        <td>.vcxvxvxcv..</td>
+        <td>...vfgdfgdfgdfgdfgdfgfd</td>
+        <td>.. fdgdgdgdfgdfg dfgdfgdfgdfg.</td>
+        <td>. dfgdfgdfgfd dfgdfgdfgdfg dfgdf..</td>
+        <td>...vfgdfgdfgdfgdfgdfgfd</td>
+        <td>.. fdgdgdgdfgdfg dfgdfgdfgdfg.</td>
+        </tr>
+
+        <tr>
+            <td>testtt testtt tesvt gdfgfd vxcvxcv.</td>
+            <td>.cxvxcvxxzzvcvcxvxvxcvxcvxcvxcvcx sdsfsdf dzfsdfcvcxvxcvcx..</td>
+            <td>.vcxvxvxcv..</td>
+            <td>...vfgdfgdfgdfgdfgdfgfd</td>
+            <td>.. fdgdgdgdfgdfg dfgdfgdfgdfg.</td>
+            <td>. dfgdfgdfgfd dfgdfgdfgdfg dfgdf..</td>
+            <td>...vfgdfgdfgdfgdfgdfgfd</td>
+            <td>.. fdgdgdgdfgdfg dfgdfgdfgdfg.</td>
+            </tr>
+        <!-- Add more rows as needed -->
+    </tbody>
+    </table>
+
+
     <div id="wrapper-container" >
     <div class="form-wrapper">
 
         <form action="submit_booking.php" method="POST">
-            <label for="trip_type">Trip Type:</label><br>
-            <input type="radio" id="one_way" name="trip_type" value="one_way">
-            <label for="one_way">One Way</label>
-            <input type="radio" id="round_trip" name="trip_type" value="round_trip" checked>
-            <label for="round_trip">Round Trip</label><br><br>
-
-
-            <label for="from_location">Outward:</label><br>
-            <select id="from_location" name="from_location">
-                <option value="New York">New York</option>
-                <option value="Los Angeles">Los Angeles</option>
-                <option value="Chicago">Chicago</option>
-                <!-- Add more options as needed -->
-            </select><br><br>
-
-            <label for="to_location">Round Trip:</label><br>
-            <select id="to_location" name="to_location">
-                <option value="London">London</option>
-                <option value="Paris">Paris</option>
-                <option value="Tokyo">Tokyo</option>
-                <!-- Add more options as needed -->
-            </select><br><br>
-
-            <label for="passenger_count">Passenger Count:</label><br>
-            <input type="number" id="passenger_count" name="passenger_count" min="1" max="10"><br><br>
-
-            <label for="trip_date">Trip Date:</label><br>
-            <input type="date" id="trip_date" name="trip_date"><br><br>
-
-            <label for="gender">Gender:</label><br>
-            <input type="radio" id="male" name="gender" value="male">
-            <label for="male">Male</label>
-            <input type="radio" id="female" name="gender" value="female">
-            <label for="female">Female</label><br><br><br>
-
             <label for="payment_method">Payment Method:</label><br>
             <select id="payment_method" name="payment_method">
                 <option value="credit_card">Credit Card</option>

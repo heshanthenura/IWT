@@ -208,3 +208,37 @@ input[type="submit"]:hover {
     font-weight: bold;
     margin-right: 5px;
 }
+
+
+/* Apply some basic styling to the table */
+table {
+    width: 80%; /* Adjust width as needed */
+    margin: 0 auto; /* Center the table */
+    border-collapse: collapse;
+  }
+  
+  /* Style the table header */
+  th {
+    background-color: #ccc; /* Ash background color */
+    padding: 12px; /* Increase padding for better spacing */
+    text-align: center; /* Center-align text */
+  }
+  
+  /* Style the table cells */
+  td {
+    border: 1px solid #dddddd;
+    padding: 12px; /* Increase padding for better spacing */
+    text-align: center; /* Center-align text */
+    word-wrap: break-word; /* Allow content to wrap to new line */
+    max-width: 50px; /* Maximum width for each cell */
+  }
+  
+  /* Alternate row colors for better readability */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Hover effect on rows */
+  tr:hover {
+    background-color: #ddd;
+  }
