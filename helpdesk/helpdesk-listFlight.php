@@ -56,6 +56,7 @@ $conn->close();
     <div class="navbar">
         <h2>Helpdesk Panel</h2>
         <a href="helpdesk.php">Dashboard</a>
+        <a href="helpdesk-addFlight.php">Add Flight</a>
         <a href="helpdesk-listFlight.php">Manage Airline</a>
     </div>
 

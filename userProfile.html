@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/userProfile.css" type="text/css">
+
+    <script src="myScript.js"></script>
+
+</head>
+<body>
+
+    <!-- Heading code lines -->
+    <div id="heading">
+        <img src="images\airline-logo.jpg" width="100px" height="100px" class="logo">
+
+        <h1 class="mainHeadline">Your Dream trip, a few clicks away</h1>
+        
+        <a href="#">
+            <img class="userLogo" width="50px" height="50px" src="images\user-circle.png">
+            <span>Login/SignUp</span>
+        </a>
+    </div>
+
+    <!-- welcome and icons set code lines -->
+    <div>
+        <h2 style="margin-left: 10px;">Welcome</h2>
+        <form class="search" action="#">
+            <input type="search" name="q" placeholder="Search the Packeges">
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="icon-container">
+            <a href="#">
+                <img src="images/icons-home.png" alt="Home" width="30px" height="30px">
+                <span>Home</span>
+            </a>
+            <a href="#">
+                <img src="images/icons-user.png" alt="User" width="30px" height="30px">
+                <span>User</span>
+            </a>
+            <a href="#">
+                <img src="images/icons-phone.png" alt="Contact Us" width="30px" height="30px">
+                <span>Contact</span>
+            </a>
+            <a href="#">
+                <img src="images/icons-warning.png" alt="About Us" width="30px" height="30px">
+                <span>About</span>
+            </a>
+            </div>
+    </div>
+
+
+
+
+    <!-- user details -->
+    <h2 class="userHeading">User Details</h2>
+    <div class="user-details-box">
+        <form action="#" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Update">
+            <input type="reset" value="Delete">
+        </form>
+    </div><br><br><br>
+
+    <!-- horizontal line -->
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    
+
+    <!-- user booked tickets -->
+    <h2 style="text-align: center;">User Booked Tickets</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>User Name</th>
+                <th>Outer Trip</th>
+                <th>Round Trip</th>
+                <th>Passenger Count</th>
+                <th>Trip Date</th>
+                <th>Ticket Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>New York - London</td>
+                <td>Yes</td>
+                <td>2</td>
+                <td>2024-05-15</td>
+                <td>$500</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="footer">
+        <img src="images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
+    
+        <div class="content-wrapper">
+            <h1 class="bottomHeadline">Follow Us On</h1>
+
+            <div class="socialMedia-icon-container">
+                <img src="images/icon-facebook.png" alt="Facebook" width="30px" height="30px">
+                <img src="images/icon-twitter.png" alt="Twitter" width="30px" height="30px">
+                <img src="images/icon-instagram.png" alt="Instagram" width="30px" height="30px">
+                <img src="images/icon-linkedin.png" alt="LinkedIn" width="30px" height="30px">
+            </div>
+        </div>
+
+        <div class="email-container">
+            <p>Subscribe for our latest offers...</p>
+            <input type="search" name="a" placeholder="Email address">
+            <img src="images\icon-email.png" alt="email" width="30px" height="30px">
+            <p>Teams of use.Privacy Policy.Cookies</p>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>

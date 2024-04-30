@@ -26,8 +26,8 @@
     <div id="navigation">
         <div class="nav-link-wrap"><a href="index.php">Home</a></div>
         <div class="nav-link-wrap"><a href="profile.php">Profile</a></div>
-        <div class="nav-link-wrap"><a href="contact.php">Contact Us</a></div>
-        <div class="nav-link-wrap"><a href="about.php">About Us</a></div>
+        <div class="nav-link-wrap"><a href="contactus.php">Contact Us</a></div>
+        <div class="nav-link-wrap"><a href="aboutus.php">About Us</a></div>
     </div>
 
 </body>

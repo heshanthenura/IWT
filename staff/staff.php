@@ -16,6 +16,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Check if delete action is triggered
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    // Prepare a delete statement
+    $sql_delete = "DELETE FROM tickets_info WHERE ticket_id = ?";
+    $stmt = $conn->prepare($sql_delete);
+    $stmt->bind_param("i", $delete_id);
+    // Execute the delete statement
+    if ($stmt->execute()) {
+        // Redirect back to staff page after deletion
+        header("Location: staff.php");
+        exit;
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
+
 // Fetch ticket information from the tickets_info table
 $sql_tickets = "SELECT t.ticket_id, u.full_name, t.arrivale, t.departure, t.Destination, t.airline 
 FROM tickets_info t
@@ -105,7 +122,8 @@ $result_tickets = $conn->query($sql_tickets);
                     echo "<td>" . $row["departure"] . "</td>";
                     echo "<td>" . $row["Destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
-                    echo "<td><a href='#'>Action</a></td>";
+                    // Add delete action
+                    echo "<td><a href='staff.php?delete_id=" . $row["ticket_id"] . "'>Delete</a></td>";
                     echo "</tr>";
                 }
             ?>

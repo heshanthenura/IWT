@@ -21,6 +21,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Check if delete action is triggered
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    // Prepare a delete statement
+    $sql_delete = "DELETE FROM tickets_info WHERE ticket_id = ?";
+    $stmt = $conn->prepare($sql_delete);
+    $stmt->bind_param("i", $delete_id);
+    // Execute the delete statement
+    if ($stmt->execute()) {
+        // Redirect back to admin page after deletion
+        header("Location: admin.php");
+        exit;
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
+
 // Fetch total number of tickets
 $sqlTotalTickets = "SELECT COUNT(*) AS total_tickets FROM tickets_info";
 $resultTotalTickets = $conn->query($sqlTotalTickets);
@@ -120,7 +137,8 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["departure"] . "</td>";
                     echo "<td>" . $row["Destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
-                    echo "<td>Action</td>";
+                    // Add delete action
+                    echo "<td><a href='admin.php?delete_id=" . $row["ticket_id"] . "'>Delete</a></td>";
                     echo "</tr>";
                 }
             } else {

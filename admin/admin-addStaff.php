@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION["username"])) {
+    header("Location: ../login.php");
+    exit;
+}
+
+if ($_SESSION["role"] !== "ADMIN") {
+    // Redirect to another page
+    header("Location: ../login.php"); 
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +37,7 @@
         <a href="../php/logout.php">
             <img class="userLogo" width="50px" height="50px" src="../images/user-circle.png">
             <span>Logout</span>
-        </a>
+        </a> 
     </div>
 
 
@@ -43,12 +59,12 @@
 
     <h2>Add Staff</h2>
     <div class="form-wrapper">
-        <form action="submit_staff.php" method="post">
+        <form action="../php/admin/add_staff.php" method="post">
             <label for="staff_name">Staff Name:</label><br>
             <input type="text" id="staff_name" name="staff_name" required><br><br>
 
             <label for="user_name">User Name:</label><br>
-            <input type="text" id="user_name" name="user_name" required><br><br>
+            <input type="text" id="username" name="username" required><br><br>
 
             <label for="staff_password">Staff Password:</label><br>
             <input type="password" id="staff_password" name="staff_password" required><br><br>
@@ -56,8 +72,8 @@
             <label for="role">Role:</label><br>
             <select id="role" name="role" required>
                 <option value="">Select Role</option>
-                <option value="staff">Staff</option>
-                <option value="help_desk">Help Desk</option>
+                <option value="STAFF">Staff</option>
+                <option value="HELPDESK">Help Desk</option>
             </select><br><br>
 
             <input type="submit" value="Submit">
