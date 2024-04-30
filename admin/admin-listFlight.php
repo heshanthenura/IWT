@@ -67,6 +67,7 @@ $conn->close();
                 <th>Seats</th>
                 <th>Price</th>
                 <th>Duration</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -82,8 +83,9 @@ $conn->close();
                     echo "<td>" . $row["destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
                     echo "<td>" . $row["seats"] . "</td>";
-                    echo "<td>" . $row["price"] . "</td>";
+                    echo "<td><input type='number' name='price' value='" . $row["price"] . "'></td>";
                     echo "<td>" . $row["duration"] . "</td>";
+                    echo "<td>update</td>";
                     echo "</tr>";
                 }
             } else {
