@@ -104,7 +104,6 @@ $conn->close();
             <label for="card_holder_name">Cardholder Name:</label><br>
             <input type="text" id="card_holder_name" name="card_holder_name" placeholder="Enter cardholder name" required><br><br>
 
-            <input type="submit" value="Submit">
         </form>
     </div>
 
@@ -120,6 +119,8 @@ $conn->close();
                     <p><strong>Trip Type:</strong> Round Trip</p>
                     <p><strong>Passenger Count:</strong> <input type="number" min=1 value=1 id="passengerCount" oninput="updateTotalPrice()"></p>
                     <p><strong>Total Price:</strong> $<span id="totalPrice">..</span></p>
+
+                    
             </div>
         </div>
     </div>
