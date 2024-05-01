@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if the user is already logged in
+if (isset($_SESSION["username"])) {
+    // Redirect to the index page
+    header("Location: index.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +27,6 @@
         
         <a href="#">
             <img class="userLogo" width="50px" height="50px" src="images\user-circle.png">
-            <span>Login/SignUp</span>
         </a>
     </div>
 

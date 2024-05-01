@@ -1,3 +1,17 @@
+<?php
+// Establish connection to the database
+$conn = new mysqli("localhost", "root", "root", "users");
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query to retrieve data from the available_flight table
+$sql = "SELECT id, arrival, departure, source, destination, airline, price FROM available_flights";
+$result = $conn->query($sql);
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,30 +57,27 @@
         </tr>
     </thead>
     <tbody>
-        <!-- can add your flight data here -->
-        <tr>
-        <td>testtt testtt tesvt gdfgfd vxcvxcv.</td>
-        <td>.cxvxcvxxzzvcvcxvxvxcvxcvxcvxcvcx sdsfsdf dzfsdfcvcxvxcvcx..</td>
-        <td>.vcxvxvxcv..</td>
-        <td>...vfgdfgdfgdfgdfgdfgfd</td>
-        <td>.. fdgdgdgdfgdfg dfgdfgdfgdfg.</td>
-        <td>. dfgdfgdfgfd dfgdfgdfgdfg dfgdf..</td>
-        <td>...vfgdfgdfgdfgdfgdfgfd</td>
-        <td>.. fdgdgdgdfgdfg dfgdfgdfgdfg.</td>
-        </tr>
-
-        <tr>
-            <td>testtt testtt tesvt gdfgfd vxcvxcv.</td>
-            <td>.cxvxcvxxzzvcvcxvxvxcvxcvxcvxcvcx sdsfsdf dzfsdfcvcxvxcvcx..</td>
-            <td>.vcxvxvxcv..</td>
-            <td>...vfgdfgdfgdfgdfgdfgfd</td>
-            <td>.. fdgdgdgdfgdfg dfgdfgdfgdfg.</td>
-            <td>. dfgdfgdfgfd dfgdfgdfgdfg dfgdf..</td>
-            <td>...vfgdfgdfgdfgdfgdfgfd</td>
-            <td>.. fdgdgdgdfgdfg dfgdfgdfgdfg.</td>
-            </tr>
-        <!-- Add more rows as needed -->
-    </tbody>
+            <?php
+            // Check if there are any rows returned
+            if ($result->num_rows > 0) {
+                // Output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["id"] . "</td>";
+                    echo "<td>" . $row["arrival"] . "</td>";
+                    echo "<td>" . $row["departure"] . "</td>";
+                    echo "<td>" . $row["source"] . "</td>";
+                    echo "<td>" . $row["destination"] . "</td>";
+                    echo "<td>" . $row["airline"] . "</td>";
+                    echo "<td>" . $row["price"] . "</td>";
+                    echo "<td><button onclick='showBookingDetails(" . $row["id"] . ", \"" . $row["source"] . "\", \"" . $row["destination"] . "\", " . $row["price"] . ")'>Select</button></td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='8'>No flights available</td></tr>";
+            }
+            ?>
+        </tbody>
     </table>
 
 
@@ -104,11 +115,11 @@
         <div class="container">
             <div class="booking-details">
                 <h2>Booking Details</h2>
-                <p><strong>From:</strong> New York</p>
-                <p><strong>To:</strong> London</p>
-                <p><strong>Trip Type:</strong> Round Trip</p>
-                <p><strong>Passenger Count:</strong> 2</p>
-                <p><strong>Total Price:</strong> $500</p>
+                <p><strong>From:</strong> <span id="from">..</span></p>
+                    <p><strong>To:</strong> <span id="to">..</span></p>
+                    <p><strong>Trip Type:</strong> Round Trip</p>
+                    <p><strong>Passenger Count:</strong> <input type="number" min=1 value=1 id="passengerCount" oninput="updateTotalPrice()"></p>
+                    <p><strong>Total Price:</strong> $<span id="totalPrice">..</span></p>
             </div>
         </div>
     </div>
@@ -144,7 +155,23 @@
 
     </div>
 
+    <script>
+        function showBookingDetails(id, source, destination, price) {
+            // alert(id)
+            document.getElementById("from").innerText = source;
+            document.getElementById("to").innerText = destination;
+            document.getElementById("passengerCount").value = 1; // Reset passenger count to 1
+            document.getElementById("totalPrice").innerText = price;
+            // document.getElementById("bookingDetails").style.display = "block";
+        }
 
+        function updateTotalPrice() {
+            var price = document.getElementById("totalPrice").innerText;
+            var passengerCount = document.getElementById("passengerCount").value;
+            document.getElementById("totalPrice").innerText = price * passengerCount;
+            // alert()
+        }
+    </script>
 
 </body>
 </html>

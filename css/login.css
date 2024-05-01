@@ -10,8 +10,12 @@
     background-color: #f0f0f0;
 }
 
-#heading a span{
-    margin-right: -70px ;
+#heading>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: red;
 }
 
 .footer {
