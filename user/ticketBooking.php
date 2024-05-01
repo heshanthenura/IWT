@@ -120,7 +120,7 @@ $conn->close();
                     <p><strong>Passenger Count:</strong> <input type="number" min=1 value=1 id="passengerCount" oninput="updateTotalPrice()"></p>
                     <p><strong>Total Price:</strong> $<span id="totalPrice">..</span></p>
 
-                    
+                    <input type="submit" value="Submit">
             </div>
         </div>
     </div>
