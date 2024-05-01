@@ -40,7 +40,7 @@
             <button type="submit">Login</button>
           </div>
         </form>
-        <p>Not a member? <a href="/signup.php">Sign Up</a></p>
+        <p>Not a member? <a href="./signup.php">Sign Up</a></p>
       </div>
     </div>
 

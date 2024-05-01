@@ -75,7 +75,9 @@ $conn->close();
             if ($result->num_rows > 0) {
                 // Output data of each row
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
+                    echo "<tr id='row_" . $row["id"] . "'>";
+                    // Output table cells for each column
+                    // Output input field for price with unique id
                     echo "<td>" . $row["id"] . "</td>";
                     echo "<td>" . $row["arrival"] . "</td>";
                     echo "<td>" . $row["departure"] . "</td>";
@@ -83,9 +85,10 @@ $conn->close();
                     echo "<td>" . $row["destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
                     echo "<td>" . $row["seats"] . "</td>";
-                    echo "<td><input type='number' name='price' value='" . $row["price"] . "'></td>";
+                    echo "<td><input type='number' id='price_" . $row["id"] . "' name='price' value='" . $row["price"] . "'></td>";
                     echo "<td>" . $row["duration"] . "</td>";
-                    echo "<td>update</td>";
+                    // Add onclick event to Update button
+                    echo "<td><button onclick='updatePrice(" . $row["id"] . ")'>Update</button></td>";
                     echo "</tr>";
                 }
             } else {
@@ -113,5 +116,27 @@ $conn->close();
             <p>Teams of use.Privacy Policy.Cookies</p>
         </div>
     </div>
+    <script>
+        function updatePrice(rowId) {
+            // Get the new price from the input field
+            var newPrice = document.getElementById('price_' + rowId).value;
+            
+            // Send an AJAX request to update the price
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Update the price in the table if the update was successful
+                    if (this.responseText.trim() === 'success') {
+                        document.getElementById('price_' + rowId).setAttribute('value', newPrice);
+                    } else {
+                        alert('Failed to update price.');
+                    }
+                }
+            };
+            xhttp.open("POST", "../php/admin/update_price.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("id=" + rowId + "&price=" + newPrice);
+        }
+    </script>
 </body>
 </html>
