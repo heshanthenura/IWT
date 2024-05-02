@@ -70,7 +70,7 @@ $conn->close();
                     echo "<td>" . $row["destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
                     echo "<td>" . $row["price"] . "</td>";
-                    echo "<td><button onclick='showBookingDetails(" . $row["id"] . ", \"" . $row["source"] . "\", \"" . $row["destination"] . "\", " . $row["price"] . ")'>Select</button></td>";
+                    echo "<td><button onclick='showBookingDetails(" . json_encode($row) . ")'>Select</button></td>";
                     echo "</tr>";
                 }
             } else {
@@ -84,7 +84,7 @@ $conn->close();
     <div id="wrapper-container" >
     <div class="form-wrapper">
 
-        <form action="submit_booking.php" method="POST">
+        <form method="POST">
             <label for="payment_method">Payment Method:</label><br>
             <select id="payment_method" name="payment_method">
                 <option value="credit_card">Credit Card</option>
@@ -116,11 +116,12 @@ $conn->close();
                 <h2>Booking Details</h2>
                 <p><strong>From:</strong> <span id="from">..</span></p>
                     <p><strong>To:</strong> <span id="to">..</span></p>
+                    <p><strong>Duration:</strong> <span id="duration">..</span></p>
                     <p><strong>Trip Type:</strong> Round Trip</p>
                     <p><strong>Passenger Count:</strong> <input type="number" min=1 value=1 id="passengerCount" oninput="updateTotalPrice()"></p>
                     <p><strong>Total Price:</strong> $<span id="totalPrice">..</span></p>
 
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Book" onclick="bookTicket()">
             </div>
         </div>
     </div>
@@ -157,21 +158,82 @@ $conn->close();
     </div>
 
     <script>
-        function showBookingDetails(id, source, destination, price) {
-            // alert(id)
-            document.getElementById("from").innerText = source;
-            document.getElementById("to").innerText = destination;
-            document.getElementById("passengerCount").value = 1; // Reset passenger count to 1
-            document.getElementById("totalPrice").innerText = price;
-            // document.getElementById("bookingDetails").style.display = "block";
-        }
+        var ID;
+        var SOURCE;
+        var DESTINATION;
+        var PASSENGER_COUNT;
+        var PRICE;
+        var DURATION;
+        var AIRLINE;
+        var ARRIVAL;
+        var DEPARTURE;
+
+        function showBookingDetails(row) {
+            console.log(row)
+    // Calculate duration
+    var arrivalTime = new Date(row.arrival);
+    var departureTime = new Date(row.departure);
+    var duration = Math.abs(departureTime - arrivalTime) / 36e5; // Convert milliseconds to hours
+    var roundedDuration = Math.round(duration); // Round the duration to the nearest hour
+
+    // Display booking details
+    document.getElementById("from").innerText = row.source;
+    document.getElementById("to").innerText = row.destination;
+    document.getElementById("duration").innerText = roundedDuration + " hours"; // Display rounded duration
+    document.getElementById("passengerCount").value = 1; // Reset passenger count to 1
+    document.getElementById("totalPrice").innerText = row.price;
+    
+    // Store details for booking
+    ID = row.id;
+    SOURCE = row.source;
+    DESTINATION = row.destination;
+    AIRLINE = row.airline; // Assign the airline to the AIRLINE variable
+    PRICE = row.price;
+    PASSENGER_COUNT = 1;
+    DURATION = roundedDuration;
+    ARRIVAL = row.arrival
+    DEPARTURE = row.departure
+}
+
 
         function updateTotalPrice() {
             var price = document.getElementById("totalPrice").innerText;
             var passengerCount = document.getElementById("passengerCount").value;
             document.getElementById("totalPrice").innerText = price * passengerCount;
-            // alert()
+            PASSENGER_COUNT = passengerCount;
+            PRICE = price * passengerCount;
         }
+
+        function validatePayment() {
+            var cardNumber = document.getElementById("card_number").value;
+            var expiryDate = document.getElementById("expiry_date").value;
+            var cvv = document.getElementById("cvv").value;
+            var cardHolderName = document.getElementById("card_holder_name").value;
+
+            if (cardNumber.trim() === "" || expiryDate.trim() === "" || cvv.trim() === "" || cardHolderName.trim() === "") {
+                alert("Please fill in all payment details.");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function bookTicket() {
+        if (validatePayment()) {
+            // Send AJAX request to save_ticket.php
+            console.log("flight_id=" + ID + "&arrival=" + SOURCE + "&departure=" + DESTINATION + "&destination=" + DESTINATION + "&source=" + SOURCE + "&airline=" + AIRLINE + "&price=" + PRICE + "&duration=" + DURATION + "&passenger_count=" + PASSENGER_COUNT)
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    // Here you can add further logic based on the response from the server
+                }
+            };
+            xhttp.open("POST", "../php/user/book_ticket.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("flight_id=" + ID + "&arrival=" + ARRIVAL + "&departure=" + DEPARTURE + "&destination=" + DESTINATION + "&source=" + SOURCE + "&airline=" + AIRLINE + "&price=" + PRICE + "&duration=" + DURATION + "&passenger_count=" + PASSENGER_COUNT);
+        }
+    }
     </script>
 
 </body>

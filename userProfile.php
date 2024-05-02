@@ -9,17 +9,24 @@ $conn = new mysqli("localhost", "root", "root", "users");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT username, email, full_name FROM users WHERE username = ?";
-$stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Error preparing statement: " . $conn->error);
-}
-$stmt->bind_param("s", $_SESSION["username"]);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+
+// Retrieve user details from the database
+$sql_user = "SELECT full_name, username, email FROM users WHERE username = ?";
+$stmt_user = $conn->prepare($sql_user);
+$stmt_user->bind_param("s", $_SESSION["username"]);
+$stmt_user->execute();
+$result_user = $stmt_user->get_result();
+$user = $result_user->fetch_assoc();
+
+// Retrieve user's booked tickets from the database
+$sql_tickets = "SELECT * FROM tickets_info WHERE username = ?";
+$stmt_tickets = $conn->prepare($sql_tickets);
+$stmt_tickets->bind_param("s", $_SESSION["username"]);
+$stmt_tickets->execute();
+$result_tickets = $stmt_tickets->get_result();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,26 +128,37 @@ $user = $result->fetch_assoc();
         <thead>
             <tr>
                 <th>Ticket ID</th>
-                <th>User Name</th>
+                <th>Flight ID</th>
                 <th>Outer Trip</th>
                 <th>Round Trip</th>
-                <th>Passenger Count</th>
-                <th>Trip Date</th>
-                <th>Ticket Price</th>
+                <th>Destination</th>
+                <th>Source</th>
+                <th>Airline</th>
+                <th>Price</th>
+                <th>Duration</th>
+                <th>Passenger count</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>New York - London</td>
-                <td>Yes</td>
-                <td>2</td>
-                <td>2024-05-15</td>
-                <td>$500</td>
-            </tr>
-            <!-- Add more rows as needed -->
+            <?php
+            // Output each booked ticket's details
+            while ($row = $result_tickets->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["ticket_id"] . "</td>";
+                echo "<td>" . $row["flight_id"] . "</td>";
+                echo "<td>" . $row["arrivale"] . "</td>";
+                echo "<td>" . $row["departure"] . "</td>";
+                echo "<td>" . $row["Destination"] . "</td>";
+                echo "<td>" . $row["source"] . "</td>";
+                echo "<td>" . $row["airline"] . "</td>";
+                echo "<td>$" . $row["Price"] . "</td>";
+                echo "<td>" . $row["duration"] . "</td>";
+                echo "<td>" . $row["passenger_count"] . "</td>";
+                echo "</tr>";
+            }
+            ?>
         </tbody>
+    </table>
     </table>
 
 
