@@ -100,6 +100,7 @@ $result_tickets = $stmt_tickets->get_result();
         <label for="email">Email:</label><br>
         <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br>
         <input type="submit" value="UPDATE">
+       <button type="button" onclick="deleteAccount()">DELETE PROFILE</button>
     </form>
         </div>
 
@@ -201,7 +202,29 @@ $result_tickets = $stmt_tickets->get_result();
 
     </div>
 
-
+    <script>
+    function deleteAccount() {
+        if (confirm("Are you sure you want to delete your profile?")) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Success
+                        alert("Profile deleted successfully!");
+                        // Redirect or perform any other action after deletion
+                        window.location.href = "logout.php";
+                    } else {
+                        // Error
+                        alert("Failed to delete profile. Please try again later.");
+                    }
+                }
+            };
+            xhr.open("POST", "./php/delete_user.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("username=<?php echo $user['username']; ?>");
+        }
+    }
+</script>
 
 </body>
 </html>
