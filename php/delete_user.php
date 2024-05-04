@@ -42,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // If deletion is successful, return success response
             http_response_code(200);
             echo "User deleted successfully";
-            header("Location: ../index.php");
+            session_destroy();
+            header("Location: ../signup.php");
             exit;
         } else {
             // If deletion fails, return error response

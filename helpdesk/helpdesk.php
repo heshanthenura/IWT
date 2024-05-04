@@ -17,6 +17,22 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    // Prepare a delete statement
+    $sql_delete = "DELETE FROM tickets_info WHERE ticket_id = ?";
+    $stmt = $conn->prepare($sql_delete);
+    $stmt->bind_param("i", $delete_id);
+    // Execute the delete statement
+    if ($stmt->execute()) {
+        // Redirect back to admin page after deletion
+        header("Location: helpdesk.php");
+        exit;
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
+
 // Define SQL query to fetch data
 $sql = "SELECT t.ticket_id, u.full_name, t.arrivale, t.departure, t.destination, t.airline 
         FROM tickets_info t
@@ -96,6 +112,7 @@ if (!$result) {
                 <th>Departure</th>
                 <th>Destination</th>
                 <th>Airline</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -110,6 +127,7 @@ if (!$result) {
                     echo "<td>" . $row["departure"] . "</td>";
                     echo "<td>" . $row["destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
+                    echo "<td><a href='helpdesk.php?delete_id=" . $row["ticket_id"] . "' onclick='return confirmDelete();'>Delete</a></td>";
                     echo "</tr>";
                 }
             } else {
@@ -151,6 +169,11 @@ if (!$result) {
 
         // Update departure time every second
         setInterval(updateDepartureTime, 1000);
+
+        
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this ticket?");
+        }
     </script>
 </body>
 </html>

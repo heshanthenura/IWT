@@ -138,7 +138,7 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["Destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
                     // Add delete action
-                    echo "<td><a href='admin.php?delete_id=" . $row["ticket_id"] . "'>Delete</a></td>";
+                    echo "<td><a href='admin.php?delete_id=" . $row["ticket_id"] . "' onclick='return confirmDelete();'>Delete</a></td>";
                     echo "</tr>";
                 }
             } else {
@@ -182,6 +182,10 @@ $result = $conn->query($sql);
 
         // Update departure time every second
         setInterval(updateDepartureTime, 1000);
+
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this ticket?");
+        }
     </script>
 
 </body>

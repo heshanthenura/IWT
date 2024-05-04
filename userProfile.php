@@ -212,7 +212,7 @@ $result_tickets = $stmt_tickets->get_result();
                         // Success
                         alert("Profile deleted successfully!");
                         // Redirect or perform any other action after deletion
-                        window.location.href = "logout.php";
+                        window.location.href = "signup.php";
                     } else {
                         // Error
                         alert("Failed to delete profile. Please try again later.");
