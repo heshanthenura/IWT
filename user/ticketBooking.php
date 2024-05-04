@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION["username"])) {
+    header("Location: ../login.php");
+    exit;
+}
+
+
 // Establish connection to the database
 $conn = new mysqli("localhost", "root", "root", "iwt");
 
@@ -32,7 +39,7 @@ $conn->close();
         <a href="#">
             <img class="userLogo" width="50px" height="50px" src="../images/user-circle.png">
             <?php
-            session_start();
+            
                 if (isset($_SESSION["username"])) {
                     echo '<div id="login-logout"><a href="../php/logout.php">Logout</a></div>';
                 } else {
