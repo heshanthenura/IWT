@@ -33,6 +33,12 @@ if (isset($_GET['delete_id'])) {
     }
 }
 
+// Fetch total number of tickets
+$sqlTotalTickets = "SELECT COUNT(*) AS total_tickets FROM tickets_info";
+$resultTotalTickets = $conn->query($sqlTotalTickets);
+$rowTotalTickets = $resultTotalTickets->fetch_assoc();
+$totalTickets = $rowTotalTickets['total_tickets'];
+
 // Define SQL query to fetch data
 $sql = "SELECT t.ticket_id, u.full_name, t.arrivale, t.departure, t.destination, t.airline 
         FROM tickets_info t
@@ -85,7 +91,7 @@ if (!$result) {
     <div class="helpDesk-container">
         <div class="box" style="background-color: rgb(39, 108, 181);">
             <h2>Total Tickets</h2>
-            <p>250</p>
+            <p><?php echo $totalTickets; ?></p>
         </div>
         <div class="box" style="background-color: rgb(37, 228, 97);">
             <h2>Amount</h2>
