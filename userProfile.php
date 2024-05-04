@@ -99,8 +99,9 @@ $result_tickets = $stmt_tickets->get_result();
         <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>" readonly><br>
         <label for="email">Email:</label><br>
         <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br>
-        <input type="submit" value="UPDATE">
-       <button type="button" onclick="deleteAccount()">DELETE PROFILE</button>
+        <div id="btn-wrap"><input type="submit" value="UPDATE">
+       <button type="button" onclick="deleteAccount()" id="delete-btn">DELETE PROFILE</button></div>
+        
     </form>
         </div>
 
