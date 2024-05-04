@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_password = $_POST["new_password"];
     $confNew_password = $_POST["confNew_password"];
 
-    $conn = new mysqli("localhost", "root", "root", "users");
+    $conn = new mysqli("localhost", "root", "root", "iwt");
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }

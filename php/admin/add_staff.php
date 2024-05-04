@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $_POST["role"]; // No need to sanitize as it's selected from predefined options
 
     // Database connection
-    $conn = new mysqli("localhost", "root", "root", "users");
+    $conn = new mysqli("localhost", "root", "root", "iwt");
 
     // Check connection
     if ($conn->connect_error) {

@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = $_POST['message'];
 
         // Create connection
-        $conn = new mysqli("localhost", "root", "root", "users");
+        $conn = new mysqli("localhost", "root", "root", "iwt");
 
         // Check connection
         if ($conn->connect_error) {

@@ -15,7 +15,7 @@ if (isset($_POST['id']) && isset($_POST['price'])) {
     $new_price = floatval($_POST['price']);
 
     // Connect to the database
-    $conn = new mysqli("localhost", "root", "root", "users");
+    $conn = new mysqli("localhost", "root", "root", "iwt");
 
     // Check connection
     if ($conn->connect_error) {

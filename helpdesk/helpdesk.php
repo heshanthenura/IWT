@@ -10,7 +10,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "HELPDESK") {
 }
 
 // Establish a database connection
-$conn = new mysqli("localhost", "root", "root", "users");
+$conn = new mysqli("localhost", "root", "root", "iwt");
 
 // Check connection
 if ($conn->connect_error) {
