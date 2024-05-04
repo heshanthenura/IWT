@@ -168,17 +168,6 @@ $result_tickets = $stmt_tickets->get_result();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     <div class="footer">
         <img src="images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
     
