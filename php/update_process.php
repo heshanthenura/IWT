@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->affected_rows > 0) {
         echo "User details updated successfully";
-        header("Location: ../profile.php");
+        header("Location: ../userProfile.php");
         exit;
     } else {
         echo "Failed to update user details";

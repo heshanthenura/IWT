@@ -39,10 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Bind parameters and execute the delete statement
         $stmt->bind_param("s", $username);
         if ($stmt->execute()) {
+
+            session_destroy(); //using for session end after user delete
             // If deletion is successful, return success response
             http_response_code(200);
             echo "User deleted successfully";
-            header("Location: ../index.php");
+            header("Location: ../signup.php");
             exit;
         } else {
             // If deletion fails, return error response

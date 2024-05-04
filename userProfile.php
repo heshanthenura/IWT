@@ -168,17 +168,6 @@ $result_tickets = $stmt_tickets->get_result();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     <div class="footer">
         <img src="images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
     
@@ -212,7 +201,7 @@ $result_tickets = $stmt_tickets->get_result();
                         // Success
                         alert("Profile deleted successfully!");
                         // Redirect or perform any other action after deletion
-                        window.location.href = "logout.php";
+                        window.location.href = "signup.php";
                     } else {
                         // Error
                         alert("Failed to delete profile. Please try again later.");

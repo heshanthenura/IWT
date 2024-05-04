@@ -97,7 +97,7 @@ $result_tickets = $conn->query($sql_tickets);
         
     </div>
 
-    <h2 style="text-align: center;">Today's Flights</h2>
+    <h2 style="text-align: center;">Tickets Booking Info</h2>
 
     <table style="border: 1px;">
         <thead>
