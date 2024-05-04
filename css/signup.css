@@ -145,11 +145,11 @@ body {
   input[type="email"]:focus,
   input[type="password"]:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #4caf50;
   }
   
   .submit-button {
-    background-color: #007bff;
+    background-color: #4caf50;
     color: #fff;
     padding: 10px;
     border: none;
@@ -160,7 +160,7 @@ body {
   }
   
   .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #4caf50;
   }
   
   p {
