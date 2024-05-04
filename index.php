@@ -21,6 +21,7 @@
         <a href="#">
             <img class="userLogo" width="50px" height="50px" src="images\user-circle.png">
             <?php
+            session_start();
                 if (isset($_SESSION["username"])) {
                     echo '<div id="login-logout"><a href="./php/logout.php">Logout</a></div>';
                 } else {
