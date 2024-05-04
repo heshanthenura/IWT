@@ -66,6 +66,9 @@ if ($_SESSION["role"] !== "ADMIN") {
             <label for="user_name">User Name:</label><br>
             <input type="text" id="username" name="username" required><br><br>
 
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
             <label for="staff_password">Staff Password:</label><br>
             <input type="password" id="staff_password" name="staff_password" required><br><br>
 

@@ -61,7 +61,6 @@ $result = $conn->query($sql);
                 <th>Id</th>
                 <th>Name</th>
                 <th>Seats</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -73,7 +72,6 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["airline_id"] . "</td>";
                     echo "<td>" . $row["name"] . "</td>";
                     echo "<td>" . $row["seats"] . "</td>";
-                    echo "<td>Action</td>"; // You can add action buttons here
                     echo "</tr>";
                 }
             } else {

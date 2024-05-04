@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     
-    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <link rel="stylesheet" href="css/signup.css" type="text/css">
 </head>
 <body>
 
@@ -17,7 +17,14 @@
         
         <a href="#">
             <img class="userLogo" width="50px" height="50px" src="images\user-circle.png">
-            <span>Login/SignUp</span>
+            <?php
+            session_start();
+                if (isset($_SESSION["username"])) {
+                    echo '<div id="login-logout"><a href="./php/logout.php">Logout</a></div>';
+                } else {
+                    echo '<div id="login-logout"><a href="login.php">Login</a>/<a href="signup.php">Sign Up</a></div>';
+                }
+                ?>
         </a>
     </div>
 
@@ -47,7 +54,7 @@
                   <button type="submit" class="submit-button">Submit</button>
                 </form>
                 
-                <p>If you are already registered, please <a href="login.html">login here</a>.</p>
+                <p>If you are already registered, please <a href="login.php">login here</a>.</p>
               </div>
         </div>
 
