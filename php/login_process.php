@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Invalid password";
         }
     } else {
+        header("Location: ../signup.php");
         echo "User not found";
     }
 
