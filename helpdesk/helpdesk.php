@@ -84,7 +84,7 @@ if (!$result) {
     <!-- Starting admin page HTML code and CSS code -->
     <div class="helpDesk-container">
         <div class="box" style="background-color: rgb(39, 108, 181);">
-            <h2>Total Passengers</h2>
+            <h2>Total Tickets</h2>
             <p>250</p>
         </div>
         <div class="box" style="background-color: rgb(37, 228, 97);">

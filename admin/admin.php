@@ -93,7 +93,7 @@ $result = $conn->query($sql);
     <div class="admin-container">
         <!-- Boxes -->
         <div class="box" style="background-color: rgb(39, 108, 181);">
-          <h2>Total Passengers</h2>
+          <h2>Total Tickets</h2>
           <p><?php echo $totalTickets; ?></p>
         </div>
         <div class="box" style="background-color: rgb(37, 228, 97);">
