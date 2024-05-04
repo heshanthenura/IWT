@@ -31,7 +31,14 @@ $conn->close();
         
         <a href="#">
             <img class="userLogo" width="50px" height="50px" src="../images/user-circle.png">
-            <span>Login/SignUp</span>
+            <?php
+            session_start();
+                if (isset($_SESSION["username"])) {
+                    echo '<div id="login-logout"><a href="../php/logout.php">Logout</a></div>';
+                } else {
+                    echo '<div id="login-logout"><a href="login.php">Login</a>/<a href="signup.php">Sign Up</a></div>';
+                }
+                ?>
         </a>
     </div>
 
