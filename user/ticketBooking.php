@@ -107,13 +107,18 @@ $conn->close();
             </select><br><br>
 
             <label for="card_number">Card Number:</label><br>
-            <input type="text" id="card_number" name="card_number" placeholder="Enter card number" required><br><br>
+            <input type="number" id="card_number" name="card_number" inputmode="numeric" placeholder="Enter card number" required oninput="this.value = this.value.slice(0, 16)"><br><br>
+
+            <!-- <label for="card_number">Card Number:</label><br>
+            
+            <input type="number" id="card_number" name="card_number" inputmode="numeric" maxlength="16" placeholder="Enter card number (16 digits)" required><br><br> -->
 
             <label for="expiry_date">Expiration Date:</label><br>
             <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" required><br><br>
 
             <label for="cvv">CVV:</label><br>
-            <input type="text" id="cvv" name="cvv" placeholder="CVV" required><br><br>
+            <input type="number" id="cvv" name="cvv" inputmode="numeric" placeholder="CVV" required oninput="this.value = this.value.slice(0, 3)"><br><br>
+            <!-- <input type="text" id="cvv" name="cvv" placeholder="CVV" required><br><br> -->
 
             <label for="card_holder_name">Cardholder Name:</label><br>
             <input type="text" id="card_holder_name" name="card_holder_name" placeholder="Enter cardholder name" required><br><br>
@@ -177,6 +182,7 @@ $conn->close();
         var DESTINATION;
         var PASSENGER_COUNT;
         var PRICE;
+        var TOTAL_PRICE;
         var DURATION;
         var AIRLINE;
         var ARRIVAL;
@@ -203,19 +209,20 @@ $conn->close();
     DESTINATION = row.destination;
     AIRLINE = row.airline; // Assign the airline to the AIRLINE variable
     PRICE = row.price;
+    TOTAL_PRICE = row.price;
     PASSENGER_COUNT = 1;
     DURATION = roundedDuration;
-    ARRIVAL = row.arrival
-    DEPARTURE = row.departure
+    ARRIVAL = row.arrival;
+    DEPARTURE = row.departure;
 }
 
 
         function updateTotalPrice() {
             var price = document.getElementById("totalPrice").innerText;
             var passengerCount = document.getElementById("passengerCount").value;
-            document.getElementById("totalPrice").innerText = price * passengerCount;
+            document.getElementById("totalPrice").innerText = PRICE * passengerCount;
             PASSENGER_COUNT = passengerCount;
-            PRICE = price * passengerCount;
+            TOTAL_PRICE = PRICE * passengerCount;
         }
 
         function validatePayment() {
@@ -235,17 +242,17 @@ $conn->close();
         function bookTicket() {
         if (validatePayment()) {
             // Send AJAX request to save_ticket.php
-            console.log("flight_id=" + ID + "&arrival=" + SOURCE + "&departure=" + DESTINATION + "&destination=" + DESTINATION + "&source=" + SOURCE + "&airline=" + AIRLINE + "&price=" + PRICE + "&duration=" + DURATION + "&passenger_count=" + PASSENGER_COUNT)
+            console.log("flight_id=" + ID + "&arrival=" + SOURCE + "&departure=" + DESTINATION + "&destination=" + DESTINATION + "&source=" + SOURCE + "&airline=" + AIRLINE + "&price=" + TOTAL_PRICE + "&duration=" + DURATION + "&passenger_count=" + PASSENGER_COUNT)
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText);
-                    // Here you can add further logic based on the response from the server
+                    alert("Ticket Booked Successfully")
                 }
             };
             xhttp.open("POST", "../php/user/book_ticket.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("flight_id=" + ID + "&arrival=" + ARRIVAL + "&departure=" + DEPARTURE + "&destination=" + DESTINATION + "&source=" + SOURCE + "&airline=" + AIRLINE + "&price=" + PRICE + "&duration=" + DURATION + "&passenger_count=" + PASSENGER_COUNT);
+            xhttp.send("flight_id=" + ID + "&arrival=" + ARRIVAL + "&departure=" + DEPARTURE + "&destination=" + DESTINATION + "&source=" + SOURCE + "&airline=" + AIRLINE + "&price=" + TOTAL_PRICE + "&duration=" + DURATION + "&passenger_count=" + PASSENGER_COUNT);
         }
     }
     </script>
