@@ -51,7 +51,8 @@
                   <label for="confirm_password">Confirm Password:</label>
                   <input type="password" id="confirm_password" name="confirm_password" required>
                   
-                  <button type="submit" class="submit-button">Submit</button>
+                  <!-- <button type="submit" class="submit-button" onclick="return alert("")">Submit</button> -->
+                  <button type="submit" class="submit-button" onclick="alert('Sign Up succesfull')">Submit</button>
                 </form>
                 
                 <p>If you are already registered, please <a href="login.php">login here</a>.</p>
@@ -81,8 +82,6 @@
             <img src="images\icon-email.png" alt="email" width="30px" height="30px">
             <p>Teams of use.Privacy Policy.Cookies</p>
         </div>
-
-
 
 
 
