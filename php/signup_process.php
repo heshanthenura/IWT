@@ -8,11 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $conf_password = $_POST["confirm_password"];
 
-    echo $full_name;
-    echo $username;
-    echo $email;
-    echo $password;
-    echo $conf_password;
 }
 
 
