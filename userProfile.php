@@ -139,6 +139,7 @@ $result_tickets = $stmt_tickets->get_result();
                 <th>Price</th>
                 <th>Duration</th>
                 <th>Passenger count</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -156,6 +157,7 @@ $result_tickets = $stmt_tickets->get_result();
                 echo "<td>$" . $row["Price"] . "</td>";
                 echo "<td>" . $row["duration"] . "</td>";
                 echo "<td>" . $row["passenger_count"] . "</td>";
+                echo "<td><button onclick=\"deleteTicket('" . $row["ticket_id"] . "')\">Delete</button></td>";
                 echo "</tr>";
             }
             ?>
@@ -214,6 +216,32 @@ $result_tickets = $stmt_tickets->get_result();
             xhr.send("username=<?php echo $user['username']; ?>");
         }
     }
+
+    function deleteTicket(ticketId) {
+        if (confirm("Are you sure you want to delete this ticket?")) {
+            // Perform ticket deletion via AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Success
+                        alert("Ticket deleted successfully!");
+                        // Reload the page to reflect changes
+                        window.location.reload();
+                    } else {
+                        // Error
+                        var errorMessage = xhr.responseText; // Get the error message from the server
+                        alert("Failed to delete ticket: " + errorMessage);
+                        console.log(errorMessage)
+                    }
+                }
+            };
+            xhr.open("POST", "./php/user/delete_ticket.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("ticket_id=" + ticketId);
+        }
+    }
+
 </script>
 
 </body>
