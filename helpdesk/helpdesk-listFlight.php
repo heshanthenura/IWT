@@ -137,6 +137,8 @@ $conn->close();
 
     <script>
         function updatePrice(rowId) {
+        // Display a confirmation dialog
+        if (confirm("Are you sure you want to update the price?")) {
             // Get the new price from the input field
             var newPrice = document.getElementById('price_' + rowId).value;
             
@@ -156,6 +158,7 @@ $conn->close();
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("id=" + rowId + "&price=" + newPrice);
         }
+    }
     </script>
 </body>
 </html>
