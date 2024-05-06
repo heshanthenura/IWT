@@ -41,7 +41,7 @@ $conn->close();
 
     <!-- Heading code lines -->
     <div id="heading">
-        <img src="../images/airline-logo.jpg" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.png" width="100px" height="100px" class="logo">
 
         <h1 class="mainHeadline">Your Dream trip, a few clicks away</h1>
         
@@ -112,7 +112,7 @@ $conn->close();
     </table>
 
     <div class="footer">
-        <img src="../images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.png" alt="Airline Logo" width="100px" height="100px" class="logo">
     
         <div class="content-wrapper">
             <h1 class="bottomHeadline">Follow Us On</h1>
@@ -158,7 +158,7 @@ $conn->close();
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("id=" + rowId + "&price=" + newPrice);
         }
-    }
+    } 
     </script>
 </body>
 </html>

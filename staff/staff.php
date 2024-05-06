@@ -62,7 +62,7 @@ $result_tickets = $conn->query($sql_tickets);
 
     <!-- Heading code lines -->
     <div id="heading">
-        <img src="../images/airline-logo.jpg" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.png" width="100px" height="100px" class="logo">
 
         <h1 class="mainHeadline">Your Dream trip, a few clicks away</h1>
         
@@ -129,7 +129,7 @@ $result_tickets = $conn->query($sql_tickets);
                     echo "<td>" . $row["Destination"] . "</td>";
                     echo "<td>" . $row["airline"] . "</td>";
                     // Add delete action
-                    echo "<td><a href='admin.php?delete_id=" . $row["ticket_id"] . "' onclick='return confirmDelete();'>Delete</a></td>";
+                    echo "<td><a href='staff.php?delete_id=" . $row["ticket_id"] . "' onclick='return confirmDelete();'>Delete</a></td>";
                     echo "</tr>";
                 }
             ?>
@@ -137,7 +137,7 @@ $result_tickets = $conn->query($sql_tickets);
     </table>
 
     <div class="footer">
-        <img src="../images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.png" alt="Airline Logo" width="100px" height="100px" class="logo">
     
         <div class="content-wrapper">
             <h1 class="bottomHeadline">Follow Us On</h1>

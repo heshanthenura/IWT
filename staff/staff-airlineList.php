@@ -37,7 +37,7 @@ $result = $conn->query($sql);
 
     <!-- Heading code lines -->
     <div id="heading">
-        <img src="../images/airline-logo.jpg" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.png" width="100px" height="100px" class="logo">
         <h1 class="mainHeadline">Your Dream trip, a few clicks away</h1>
         <a href="../php/logout.php">
             <img class="userLogo" width="50px" height="50px" src="../images/user-circle.png">
@@ -82,7 +82,7 @@ $result = $conn->query($sql);
     </table>
 
     <div class="footer">
-        <img src="../images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.png" alt="Airline Logo" width="100px" height="100px" class="logo">
         <div class="content-wrapper">
             <h1 class="bottomHeadline">Follow Us On</h1>
             <div class="socialMedia-icon-container">

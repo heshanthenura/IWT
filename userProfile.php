@@ -43,7 +43,7 @@ $result_tickets = $stmt_tickets->get_result();
 
     <!-- Heading code lines -->
     <div id="heading">
-        <img src="images\airline-logo.jpg" width="100px" height="100px" class="logo">
+        <img src="images\airline-logo.png" width="100px" height="100px" class="logo">
 
         <h1 class="mainHeadline">Your Dream trip, a few clicks away</h1>
         
@@ -114,7 +114,7 @@ $result_tickets = $stmt_tickets->get_result();
                 <input type="password" id="new_password" name="new_password" required>
                 <label for="confNew_password">Re-Enter Password:</label>
                 <input type="password" id="confNew_password" name="confNew_password" required>
-                <input type="submit" value="Change Password">
+                <input type="submit" value="Change Password" onclick="return alert('password sucessfully changed')">
             </form>
         </div>
     </div>
@@ -172,7 +172,7 @@ $result_tickets = $stmt_tickets->get_result();
 
 
     <div class="footer">
-        <img src="images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
+        <img src="images/airline-logo.png" alt="Airline Logo" width="100px" height="100px" class="logo">
     
         <div class="content-wrapper">
             <h1 class="bottomHeadline">Follow Us On</h1>

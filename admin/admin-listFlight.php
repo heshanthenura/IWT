@@ -35,7 +35,7 @@ $conn->close();
 </head>
 <body>
     <div id="heading">
-        <img src="../images/airline-logo.jpg" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.png" width="100px" height="100px" class="logo">
         <h1 class="mainHeadline">Your Dream trip, a few clicks away</h1>
         <a href="../php/logout.php">
             <img class="userLogo" width="50px" height="50px" src="../images/user-circle.png">
@@ -88,7 +88,7 @@ $conn->close();
                     echo "<td><input type='number' id='price_" . $row["id"] . "' name='price' value='" . $row["price"] . "'></td>";
                     echo "<td>" . $row["duration"] . "</td>";
                     // Add onclick event to Update button
-                    echo "<td><button onclick='updatePrice(" . $row["id"] . ")'>Update</button></td>";
+                    echo "<td><button onclick='if(confirmUpdate()) updatePrice(" . $row["id"] . ");'>Update</button></td>";
                     echo "</tr>";
                 }
             } else {
@@ -99,7 +99,7 @@ $conn->close();
     </table>
     
     <div class="footer">
-        <img src="../images/airline-logo.jpg" alt="Airline Logo" width="100px" height="100px" class="logo">
+        <img src="../images/airline-logo.png" alt="Airline Logo" width="100px" height="100px" class="logo">
         <div class="content-wrapper">
             <h1 class="bottomHeadline">Follow Us On</h1>
             <div class="socialMedia-icon-container">
@@ -136,6 +136,9 @@ $conn->close();
             xhttp.open("POST", "../php/admin/update_price.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("id=" + rowId + "&price=" + newPrice);
+        }
+        function confirmUpdate() {
+            return confirm("Are you sure you want to update?");
         }
     </script>
 </body>
