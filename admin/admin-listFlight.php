@@ -67,7 +67,9 @@ $conn->close();
                 <th>Seats</th>
                 <th>Price</th>
                 <th>Duration</th>
-                <th>Action</th>
+                <th >Action</th>
+
+
             </tr>
         </thead>
         <tbody>
@@ -88,7 +90,10 @@ $conn->close();
                     echo "<td><input type='number' id='price_" . $row["id"] . "' name='price' value='" . $row["price"] . "'></td>";
                     echo "<td>" . $row["duration"] . "</td>";
                     // Add onclick event to Update button
-                    echo "<td><button onclick='if(confirmUpdate()) updatePrice(" . $row["id"] . ");'>Update</button><button onclick='deleteFlight(" . $row["id"] . ");'>Delete</button></td>";
+                    echo "<td><button onclick='if(confirmUpdate()) updatePrice(" . $row["id"] . ");'>Update</button><br><br><button onclick='deleteFlight(" . $row["id"] . ");'>Delete</button></td>";
+                    // echo "<td style='display: flex; gap: 10px; width: 500px;'>...</td>";
+
+                    // echo "<td><button onclick='if(confirmUpdate()) updatePrice(" . $row["id"] . ");'>Update</button><button onclick='deleteFlight(" . $row["id"] . ");'>Delete</button></td>";
                     echo "</tr>";
                 }
             } else {
