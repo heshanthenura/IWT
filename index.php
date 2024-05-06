@@ -75,27 +75,27 @@
     <div class="card-container">
         <div class="card">
             <img src="images\home-package-photo.png" alt="Travel Package">
-            <p>Package Title</p>
+            <p>Honeymoon Package</p>
             <a href="./user/ticketBooking.php"><button>Book Now</button></a>
            
         </div>
 
         <div class="card">
             <img src="images\home-package-photo.png" alt="Travel Package">
-            <p>Package Title</p>
+            <p>Family Vacation Package</p>
             <a href="./user/ticketBooking.php"><button>Book Now</button></a>
 
         </div>
         <div class="card">
             <img src="images\home-package-photo.png" alt="Travel Package">
-            <p>Package Title</p>
+            <p>Adventure Package</p>
             <a href="./user/ticketBooking.php"><button>Book Now</button></a>
 
         </div>
         
         <div class="card">
             <img src="images\home-package-photo.png" alt="Travel Package">
-            <p>Package Title</p>
+            <p>Luxury Retreat Package</p>
             <a href="./user/ticketBooking.php"><button>Book Now</button></a>
 
         </div>
