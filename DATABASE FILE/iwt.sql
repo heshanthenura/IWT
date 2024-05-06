@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2024 at 05:32 PM
+-- Generation Time: May 05, 2024 at 06:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -77,7 +77,8 @@ INSERT INTO `available_flights` (`id`, `arrival`, `departure`, `source`, `destin
 (2, '2024-05-07 20:58:00', '2024-05-05 20:58:00', 'San Jose', 'Zhotrora', 'Core Airways', '165', 450, 48),
 (3, '2024-05-07 13:00:00', '2024-05-06 21:00:00', 'Hegan', 'Oyladnard', 'Nep Airways', '215', 350, 16),
 (4, '2024-05-08 21:00:00', '2024-05-06 21:00:00', 'Olisphis', 'Vrexledo', 'Novar Airways', '158', 540, 48),
-(5, '2024-05-10 21:01:00', '2024-05-08 21:01:00', 'Zhotrora', 'Ariosey', 'Peak Airways', '210', 380, 48);
+(5, '2024-05-10 21:01:00', '2024-05-08 21:01:00', 'Zhotrora', 'Ariosey', 'Peak Airways', '210', 380, 48),
+(6, '2024-05-07 09:21:00', '2024-05-06 09:21:00', 'Odonhull', 'Plueyby', 'Peak Airways', '210', 300, 24);
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,8 @@ INSERT INTO `feedback` (`id`, `full_name`, `email`, `message`) VALUES
 (1, 'Heshan Thenura Kariyawasam', 'heshanthenura@protonmail.com', 'asdad'),
 (2, 'Heshan Thenura Kariyawasam', 'heshanthenura@protonmail.com', 'asdad'),
 (3, 'Heshan Thenura Kariyawasam', 'heshanthenura@protonmail.com', 'asdad'),
-(4, 'sdfsd sdfdf', 'heshanthenura@protonmail.com', 'asdad');
+(4, 'sdfsd sdfdf', 'heshanthenura@protonmail.com', 'asdad'),
+(5, 'isuka', 'isuka@gmail.com', 'hello hi bye');
 
 -- --------------------------------------------------------
 
@@ -177,10 +179,7 @@ INSERT INTO `tickets_info` (`ticket_id`, `flight_id`, `username`, `arrivale`, `d
 (17, 17, 'JacobScott', '2022-07-05 17:10:00', '2022-07-05 16:10:00', 'San', 'Chiby', 'Echo Airline', 125, '', 0),
 (18, 18, 'AvaAllen', '2022-07-05 19:15:00', '2022-07-05 16:12:00', 'San', 'Flerough', 'Core Airways', 275, '', 0),
 (19, 19, 'BenjaminKing', '2022-07-05 23:40:00', '2022-07-05 20:31:00', 'Shiburn', 'Oyladnard', 'Aero Airways', 295, '', 0),
-(20, 20, 'SophiaLewis', '2022-07-05 23:58:00', '2022-07-05 22:14:00', 'Zhotrora', 'Trerdence', 'Aero Airways', 185, '', 0),
-(21, 21, 'WilliamWright', '2022-07-06 10:14:00', '2022-07-05 23:15:00', 'Odonhull', 'Otiginia', 'Blue Airlines', 965, '', 0),
-(22, 11, 'user', '2024-04-12 13:44:00', '2024-04-03 13:44:00', 'Hegan', 'San Jose', 'Spark Airways', 1405944, '216', 3),
-(23, 1, 'user', '2024-05-18 22:30:00', '2024-04-25 22:30:00', 'Zhotrora', 'San Jose', 'Core Airways', 14760, '552', 5);
+(27, 2, 'isuka', '2024-05-07 20:58:00', '2024-05-05 20:58:00', 'Zhotrora', 'San Jose', 'Core Airways', 450, '48', 1);
 
 -- --------------------------------------------------------
 
@@ -201,10 +200,31 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `role`, `full_name`, `email`) VALUES
+('AlexJohnson', 'AD2024!', 'USER', 'Alex Johnson', 'alex.johnson@example.com'),
+('EmilyDavis', 'ED2024!', 'USER', 'Emily Davis', 'emily.davis@example.com'),
+('RyanMiller', 'RM2024!', 'USER', 'Ryan Miller', 'ryan.miller@example.com'),
+('JessicaAnderson', 'JA2024!', 'USER', 'Jessica Anderson', 'jessica.anderson@example.com'),
+('DanielClark', 'DC2024!', 'USER', 'Daniel Clark', 'daniel.clark@example.com'),
+('OliviaTaylor', 'OT2024!', 'USER', 'Olivia Taylor', 'olivia.taylor@example.com'),
+('EthanMartinez', 'EM2024!', 'USER', 'Ethan Martinez', 'ethan.martinez@example.com'),
+('SamanthaWhite', 'SW2024!', 'USER', 'Samantha White', 'samantha.white@example.com'),
+('LucasMoore', 'LM2024!', 'USER', 'Lucas Moore', 'lucas.moore@example.com'),
+('ChloeWilson', 'CW2024!', 'USER', 'Chloe Wilson', 'chloe.wilson@example.com'),
+('NathanBrown', 'NB2024!', 'USER', 'Nathan Brown', 'nathan.brown@example.com'),
+('LilyThompson', 'LT2024!', 'USER', 'Lily Thompson', 'lily.thompson@example.com'),
+('MatthewRodriguez', 'MR2024!', 'USER', 'Matthew Rodriguez', 'matthew.rodriguez@example.com'),
+('HannahGarcia', 'HG2024!', 'USER', 'Hannah Garcia', 'hannah.garcia@example.com'),
+('TylerHarris', 'TH2024!', 'USER', 'Tyler Harris', 'tyler.harris@example.com'),
+('MadisonLee', 'ML2024!', 'USER', 'Madison Lee', 'madison.lee@example.com'),
+('JacobScott', 'JS2024!', 'USER', 'Jacob Scott', 'jacob.scott@example.com'),
+('AvaAllen', 'AA2024!', 'USER', 'Ava Allen', 'ava.allen@example.com'),
+('BenjaminKing', 'BK2024!', 'USER', 'Benjamin King', 'benjamin.king@example.com'),
+('SophiaLewis', 'SL2024!', 'USER', 'Sophia Lewis', 'sophia.lewis@example.com'),
+('WilliamWright', 'WW2024!', 'USER', 'William Wright', 'william.wright@example.com'),
 ('admin', 'admin', 'ADMIN', 'admin', 'admin@gmail.com'),
-('staff', 'staff', 'STAFF', 'staff', NULL),
-('helpdesk', 'helpdesk', 'HELPDESK', 'helpdesk', NULL),
-('isuka', 'isuka', 'USER', 'Isuka Minjaya', 'isuka@gmail.com');
+('helpdesk', 'helpdesk', 'HELPDESK', 'helpdesk', 'helpdesk@gmail.com'),
+('isuka', 'isuka', 'USER', 'isuka', 'isuka@gmail.com'),
+('staff', 'staff', 'STAFF', 'staff', 'staff@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -236,19 +256,19 @@ ALTER TABLE `tickets_info`
 -- AUTO_INCREMENT for table `available_flights`
 --
 ALTER TABLE `available_flights`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tickets_info`
 --
 ALTER TABLE `tickets_info`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
