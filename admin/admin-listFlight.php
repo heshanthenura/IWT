@@ -88,7 +88,7 @@ $conn->close();
                     echo "<td><input type='number' id='price_" . $row["id"] . "' name='price' value='" . $row["price"] . "'></td>";
                     echo "<td>" . $row["duration"] . "</td>";
                     // Add onclick event to Update button
-                    echo "<td><button onclick='if(confirmUpdate()) updatePrice(" . $row["id"] . ");'>Update</button></td>";
+                    echo "<td><button onclick='if(confirmUpdate()) updatePrice(" . $row["id"] . ");'>Update</button><button onclick='deleteFlight(" . $row["id"] . ");'>Delete</button></td>";
                     echo "</tr>";
                 }
             } else {
@@ -140,6 +140,33 @@ $conn->close();
         function confirmUpdate() {
             return confirm("Are you sure you want to update?");
         }
+
+        function deleteFlight(flightId) {
+        if (confirm("Are you sure you want to delete this flight?")) {
+            // Send an AJAX request to delete the flight
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Check if deletion was successful
+                    if (this.responseText.trim() === 'success') {
+                        // Remove the row from the table
+                        document.getElementById('row_' + flightId).remove();
+                        alert('Flight deleted successfully.');
+                    } else {
+                        alert('Failed to delete flight.');
+                    }
+                }
+            };
+            xhttp.open("POST", "../php/admin/delete_flight.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("id=" + flightId);
+        }
+    }
+
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete?");
+    }
+
     </script>
 </body>
 </html>
